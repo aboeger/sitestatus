@@ -68,6 +68,11 @@ class CompaniesController < ApplicationController
   end
 
   def import
+    # Company.import(params[:file])
+    # redirect_to companies_path, notice: "Companies Added Successfully"
+  end
+
+  def process_import_file
     Company.import(params[:file])
     redirect_to companies_path, notice: "Companies Added Successfully"
   end
