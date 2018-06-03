@@ -32,10 +32,7 @@ class Company < ApplicationRecord
   end
 
   def duplicates
-    companies = Company.where.not(id: id).where(website: website)
-    if companies.length > 1
-      return companies
-    end
+    Company.where("id <> ? AND website = ?", id, website)
   end
 
   def test_website
