@@ -46,5 +46,4 @@ class Company < ApplicationRecord
   def http_uri
     "http://www.#{website}"
   end
-
 end
