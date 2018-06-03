@@ -10,6 +10,7 @@ class CompaniesController < ApplicationController
   # GET /companies/1
   # GET /companies/1.json
   def show
+    @companies = @company.duplicates
   end
 
   # GET /companies/new
@@ -19,6 +20,11 @@ class CompaniesController < ApplicationController
 
   # GET /companies/1/edit
   def edit
+  end
+
+  def find_duplicates
+    duplicates = Company.find_duplicates
+    @companies = Company.where(website: duplicates)
   end
 
   # POST /companies

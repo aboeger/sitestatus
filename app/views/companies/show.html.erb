@@ -25,5 +25,11 @@
   <%= @company.website %>
 </p>
 
+<% if @companies.blank? %>
+  <p>No Duplicates dude! </p>
+<% else %>
+  <%= render "index_table"  %>
+<% end %>
+
 <%= link_to 'Edit', edit_company_path(@company) %> |
 <%= link_to 'Back', companies_path %>
