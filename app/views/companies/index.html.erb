@@ -1,17 +1,3 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to "Duplicate Companies", find_duplicates_companies_path %>
-
-<%= render "index_table" %>
-
-<br>
-
-<h3> Import Companies</h3>
-<%= form_tag import_companies_path, multipart: true do  %>
-  <%= file_field_tag :file %>
-  <%= submit_tag "Upload Companies" %>
-<% end %>
-
-<br>
-
-<%= link_to 'New Company', new_company_path %>
+<%= render partial: "index_table", locals: { destroy: false } %>

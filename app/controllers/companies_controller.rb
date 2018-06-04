@@ -1,5 +1,5 @@
 class CompaniesController < ApplicationController
-  before_action :set_company, only: [:show, :edit, :update, :destroy]
+  before_action :set_company, only: [:show, :edit, :update, :destroy, :retest_website]
 
   # GET /companies
   # GET /companies.json
@@ -68,6 +68,16 @@ class CompaniesController < ApplicationController
   end
 
   def import
+  end
+
+  def retest_website
+    respond_to do |format|
+      @company.test_website
+      format.html { redirect_to @company, notice: 'Website was retested.' }
+    end
+  end
+
+  def process_import_file
     Company.import(params[:file])
     redirect_to companies_path, notice: "Companies Added Successfully"
   end

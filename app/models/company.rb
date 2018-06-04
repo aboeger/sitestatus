@@ -2,7 +2,7 @@ class Company < ApplicationRecord
   require 'net/http'
   require 'uri'
 
-  after_create :test_website, :check_for_duplicate
+  after_create :test_website
 
   def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|
@@ -32,10 +32,7 @@ class Company < ApplicationRecord
   end
 
   def duplicates
-    companies = Company.where.not(id: id).where(website: website)
-    if companies.length > 1
-      return companies
-    end
+    Company.where("id <> ? AND website = ?", id, website)
   end
 
   def test_website

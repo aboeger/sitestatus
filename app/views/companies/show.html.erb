@@ -12,7 +12,7 @@
 
 <p>
   <strong>Phone:</strong>
-  <%= @company.phone %>
+  <%= phone_number_format(@company.phone) %>
 </p>
 
 <p>
@@ -25,10 +25,25 @@
   <%= @company.website %>
 </p>
 
+<table>
+  <thead>
+    <%= status_color(@company.website_status) %>
+    <strong>Website Status</strong>
+  </thead>
+
+  <tody>
+    <tr>
+      <td><%= @company.website_status %></td>
+      <td><%= link_to "Retest", retest_website_company_path(@company), method: "post" %></td>
+    </tr>
+  </tbody>
+</table>
+
+
 <% if @companies.blank? %>
   <p>No Duplicates dude! </p>
 <% else %>
-  <%= render "index_table"  %>
+  <%= render partial: "index_table", locals: { destroy: true } %>
 <% end %>
 
 <%= link_to 'Edit', edit_company_path(@company) %> |

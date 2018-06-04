@@ -1,0 +1,5 @@
+<h3> Import Companies</h3>
+<%= form_tag process_import_file_companies_path, multipart: true do  %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Upload Companies" %>
+<% end %>
